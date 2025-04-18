@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout}">
+  <div layout:fragment="content" class="row g-5">
+    <!-- 페이지마다 다른 본문 작성 -->
+    <div class="col-md-8">
+      <h1>List</h1>
+      <table class="table">
+        <tr>
+          <th>번호</th>
+          <th>내용</th>
+          <th>작성일</th>
+        </tr>
+        <tr th:each="dto : ${list}">
+          <td th:text="${dto.mno}"></td>
+          <td th:text="${dto.memoText}"></td>
+          <td th:text="${dto.createdDate}"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</html>
