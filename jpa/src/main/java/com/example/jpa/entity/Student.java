@@ -34,8 +34,8 @@ import lombok.ToString;
 @Builder
 @ToString
 
-@Table(name = "studenttbl") // 필수 아님 이름 바꾸고 싶으면 넣는것
-@Entity // == db table 과 같아짐
+@Table(name = "studenttbl")
+@Entity // == db table
 public class Student {
 
     @Id
@@ -43,13 +43,13 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq_gen")
     // @GeneratedValue // create sequence studenttbl_seq start with 1 increment by
     // 50
-    // @GeneratedValue(startegy = @GenerationType.AUTO)
-    private Long id; // id number(19,0) not null,
+    // @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id; // id number(19,0) not null primary key (id)
 
     // @Column(name = "sname", length = 100, nullable = false, unique = true)
-    // @Column(name = "sname", columnDefinition = "varchanr2(20) not null unique")
+    // @Column(name = "sname", columnDefinition = "varchar2(20) not null unique")
     @Column(length = 20, nullable = false)
-    private String name; // name varchar2(255 char),
+    private String name; // name varchar2(255 char)
 
     // @Column(columnDefinition = "number(8,0)")
     // private int grade;
@@ -65,16 +65,16 @@ public class Student {
     @CreationTimestamp // insert
     private LocalDateTime cDateTime; // C_DATE_TIME
 
-    @UpdateTimestamp // 초기화 + 데이터 수정 할 때마다
+    @UpdateTimestamp // insert + 데이터 수정 할 때마다
     private LocalDateTime uDateTime; // U_DATE_TIME
 
-    @CreatedDate // 프레임워크 제공
+    @CreatedDate
     private LocalDateTime cDateTime2;
     @LastModifiedDate
     private LocalDateTime uDateTime2;
 
     // enum 정의
-    // enum(상수집합)
+    // enum(상수 집합)
     public enum Grade {
         FRESHMAN, SOPHOMORE, JUNIOR, SENIOR
     }

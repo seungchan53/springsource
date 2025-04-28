@@ -40,6 +40,13 @@ build : 프로젝트생성, 라이브러리 설정, 코드작업, 컴파일, 테
     - 싱글톤 방식(객체는 하나만 생성)으로 객체 생성
     - @Controller, @Service, @Component 
 
+2) Injection(주입)
+    - @Controller, @Service, @Component 을 통해서 생성된 객체를 언제,어디서,어디에 사용할 것인지를 알려주는 개념
+    - @AutoWired 를 통해 필요한 객체 위에 작성(컨테이너가 관리하는 객체를 주입해 주세요)
+
+    @AutoWired                         클래스에 @RequiredArgsConstructor 붙이기
+    privte MemoService MemoService; == privte final MemoService MemoService
+
 2) 경로 임의로 생성
     http://localhost:8080/ ==> Controller 파일의 메소드와 매핑
 
@@ -159,5 +166,24 @@ org.hibernate 제공
 
 
 org.springframework.data 제공
-@CreatedDate
+@CreatedDate : 
 @LastModifiedDate
+
++ 설정작업 필요
+메인이 있는 클래스에 @EnableJpaAuditing 부착
+entity 클래스에 @EntityListeners(value = AuditingEntityListener.class) 부착
+
+-----------------------------------------------------------------------------------
+
+Repository + Entity
+
+Repository 제공 메소드
+1) save() : insert, update
+2) findById() : select(where)
+3) findAll() : 전체조회
+4) deletebyId() / delete : 삭제
+
+
+
+- modelmapper : dto ==> entity, entity == dto 자동으로 처리
+ 1. RootConfig.java 

@@ -1,5 +1,7 @@
 package com.example.jpa.repository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.LongStream;
 
 import org.junit.jupiter.api.Test;
@@ -9,17 +11,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.jpa.entity.Student;
 import com.example.jpa.entity.Student.Grade;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @SpringBootTest // test 용 클래스임
 public class StudentRepositoryTest {
 
-    @Autowired // = new StudentRepository() //
+    @Autowired // = new StudentRepository()
     private StudentRepository studentRepository;
 
     // CRUD test
-    // Rpository, Entity 확인
+    // Repository, Entity 확인
     // C(insert) : save(Entity) : insert
     // U(update) : save(Entity) : update
-    // 구별은 어떻개 하는가? 둘다 동일한 save() 호출
+    // 구별은 어떻게 하는가? 둘다 동일한 save() 호출
     // 원본과 변경된 부분이 있다면 update 로 실행해줌
 
     @Test // 테스트 메소드임 (테스트 메소드는 리턴 타입이 void 여야 함)
@@ -28,11 +32,10 @@ public class StudentRepositoryTest {
 
         LongStream.range(1, 11).forEach(i -> {
             Student student = Student.builder()
-                    .name("홍길동")
+                    .name("홍길동" + i)
                     .grade(Grade.JUNIOR)
                     .gender("M")
                     .build();
-
             // insert
             studentRepository.save(student);
         });
@@ -41,13 +44,12 @@ public class StudentRepositoryTest {
 
     @Test
     public void updateTest() {
-
-        // findbyId(1L) : select * from 테이블명 where id = 1
+        //
+        // findById(1L) : select * from 테이블명 where id=1;
 
         Student student = studentRepository.findById(1L).get();
 
-        // update
-        // studenttbl
+        // update studenttbl
         // set
         // c_date_time=?,
         // c_date_time2=?,
@@ -58,24 +60,27 @@ public class StudentRepositoryTest {
         // u_date_time2=?
         // where
         // id=?
+
         student.setGrade(Grade.SENIOR);
         // update
         studentRepository.save(student);
     }
 
-    // @Test
-    // public void selectOneTest() {
+    @Test
+    public void selectOneTest() {
 
-    // // Optional<Student> student = studentRepository.findById(1L);
+        // Optional<Student> student = studentRepository.findById(1L);
 
-    // // if (student.isPresent()) {
-    // // System.out.println(student.get());
-    // // }
+        // if (student.isPresent()) {
+        // System.out.println(student.get());
+        // }
 
-    // Student student =
-    // studentRepository.findById(3L).orElseThrow(EntityNotFoundException::new);
-    // System.out.println(student);
-    // }
+        // NoSuchElementException: No value present
+        // Student student = studentRepository.findById(3L).get();
+
+        Student student = studentRepository.findById(3L).orElseThrow(EntityNotFoundException::new);
+        System.out.println(student);
+    }
 
     @Test
     public void selectTest() {
@@ -92,9 +97,9 @@ public class StudentRepositoryTest {
     public void deleteTest() {
 
         // Student student = studentRepository.findById(11L).get();
-
         // studentRepository.delete(student);
 
-        studentRepository.deleteById(12L);
+        studentRepository.deleteById(10L);
     }
+
 }

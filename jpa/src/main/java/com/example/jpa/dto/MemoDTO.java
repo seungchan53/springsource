@@ -21,4 +21,5 @@ public class MemoDTO {
 
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+
 }

@@ -21,9 +21,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 // 번호,user아이디,이름,나이,역할,가입일자,자기소개
-// 번호-자동증가,
-// user아이디-unqiue
-// 역할-ADMIN, USER
+
+// 번호-자동증가, 
+// user아이디-unique
+// 역할- ADMIN, USER
 @Getter
 @ToString
 @Setter
@@ -52,7 +53,7 @@ public class Member {
     @Column(length = 2000)
     private String description;
 
-    private enum RoleType {
+    public enum RoleType {
         ADMIN, USER
     }
 }

@@ -15,7 +15,7 @@ public class MemoServiceTest {
     private MemoService memoService;
 
     @Test
-    public void getList() {
+    public void getListTest() {
         List<MemoDTO> list = memoService.getList();
         list.forEach(dto -> System.out.println(dto));
     }
@@ -41,7 +41,7 @@ public class MemoServiceTest {
     @Test
     public void memoCreateTest() {
         MemoDTO dto = MemoDTO.builder().memoText("memo 추가").build();
-        System.out.println(memoService.memoCreate(dto));
+        System.out.println("추가된 mno " + memoService.memoCreate(dto));
     }
 
 }

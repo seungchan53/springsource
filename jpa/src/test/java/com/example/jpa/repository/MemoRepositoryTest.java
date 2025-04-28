@@ -15,23 +15,30 @@ public class MemoRepositoryTest {
     private MemoRepository memoRepository;
 
     @Test
+    public void queryMethodTest() {
+
+        System.out.println(memoRepository.findByMnoLessThan(5L));
+        System.out.println(memoRepository.findByMnoLessThanOrderByMnoDesc(10L));
+        System.out.println(memoRepository.findByMemoTextContaining("memo"));
+
+    }
+
+    // test 메소드 작성
+    @Test
     public void insertTest() {
         LongStream.rangeClosed(1, 10).forEach(i -> {
 
             Memo memo = Memo.builder().memoText("memoText" + i).build();
-
             memoRepository.save(memo);
         });
     }
 
     @Test
     public void updateTest() {
-
         // Memo memo = Memo.builder().mno(1L).memoText("memoText update").build();
         Memo memo = memoRepository.findById(1L).get();
         memo.changeMemoText("memoText update");
         memoRepository.save(memo);
-
     }
 
     @Test
@@ -44,12 +51,10 @@ public class MemoRepositoryTest {
     public void listTest() {
         // List<Memo>
         memoRepository.findAll().forEach(memo -> System.out.println(memo));
-        // 엔티티 모양으로 담긴 메소드를 돌려줌
     }
 
     @Test
     public void deleteTest() {
         memoRepository.deleteById(10L);
-
     }
 }

@@ -19,27 +19,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-// db기준
+// db 기준
 
-// 번호(mno),내용(memo_text-200),생성날짜(created_date),수정날짜(updete_date)
+// 번호(mno),내용(memo_text-200),생성날짜(created_date),수정날짜(updated_date)
 // mno 자동증가, pk
 // 나머지 컬럼 NN(Not Null)
 
 @EntityListeners(value = AuditingEntityListener.class)
-
 @Getter
 @ToString
 // @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 @Entity
 public class Memo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mno;
+
     @Column(length = 200, nullable = false)
     private String memoText;
 
@@ -49,11 +48,7 @@ public class Memo {
 
     @Column(nullable = false)
     @LastModifiedDate
-    private LocalDateTime updateDate;
-
-    @Column(nullable = false)
-    @LastModifiedDate
-    private LocalDateTime upDateTime;
+    private LocalDateTime updatedDate;
 
     public void changeMemoText(String memoText) {
         this.memoText = memoText;

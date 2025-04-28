@@ -17,8 +17,8 @@
     <div th:replace="~{fragments/header::header}"></div>
     <main class="container">
       <th:block layout:fragment="section"></th:block>
-      <div th:layout:fragment="content">
-        <!-- 본문 영역 -->
+      <div layout:fragment="content">
+        <!-- 본문 영역-->
       </div>
     </main>
     <div th:replace="~{fragments/footer::footer}"></div>
@@ -28,7 +28,7 @@
       crossorigin="anonymous"
     ></script>
     <th:block layout:fragment="script">
-      <!-- 페이지마다 유동적 영역 지정 -->
+      <!--페이지마다 유동적 영역 지정-->
     </th:block>
   </body>
 </html>
