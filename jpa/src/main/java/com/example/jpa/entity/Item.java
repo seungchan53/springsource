@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +29,7 @@ import jakarta.persistence.Enumerated;
 @NoArgsConstructor
 @Builder
 @EntityListeners(value = AuditingEntityListener.class)
+@Table(name = "JPA_ITEM")
 @Entity
 public class Item {
     // id, item_nm, price, stock_number, item_detail, item_sell_status, reg_time,

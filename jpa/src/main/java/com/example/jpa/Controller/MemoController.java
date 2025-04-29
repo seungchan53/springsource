@@ -1,4 +1,4 @@
-package com.example.jpa.controller;
+package com.example.jpa.Controller;
 
 import java.util.List;
 
