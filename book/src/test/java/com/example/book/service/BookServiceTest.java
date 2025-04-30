@@ -11,7 +11,6 @@ import com.example.book.dto.PageResultDTO;
 
 @SpringBootTest
 public class BookServiceTest {
-
     @Autowired
     private BookService bookService;
 
@@ -24,8 +23,8 @@ public class BookServiceTest {
         System.out.println("내용");
         System.out.println(result.getDtoList());
         System.out.println("페이지 나누기 정보");
-        System.out.println("Totalpage" + result.getTotalPage());
-        System.out.println("PageNumList" + result.getPageNumList());
+        System.out.println("TotalPage " + result.getTotalPage());
+        System.out.println("PageNumList " + result.getPageNumList());
         System.out.println("next 여부 " + result.isNext());
         System.out.println("prev 여부 " + result.isPrev());
     }

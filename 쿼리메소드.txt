@@ -18,7 +18,7 @@ save()
     ② : 변수명
 
 3) QueryDSL 이용 - 다른 라이브러리 도움받기
-    (1) QuerydslPredicateExecutor 인터페이스
+    (1) QuerydslPredicateExecutor 인터페이스    
          - 간단한 곳에서 사용 편리함
          - 조인이 불가능(left join 불가능)
          - 복잡한 실무 환경에서는 사용하기에 한계가 명확

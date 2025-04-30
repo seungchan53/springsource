@@ -1,4 +1,4 @@
-package com.example.book.dto;
+package com.example.board.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;

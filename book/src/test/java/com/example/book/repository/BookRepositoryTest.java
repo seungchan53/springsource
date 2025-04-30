@@ -40,7 +40,7 @@ public class BookRepositoryTest {
     @Test
     public void testList2() {
         // 페이지 나누기
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("code").descending());
+        Pageable pageable = PageRequest.of(1, 10, Sort.by("code").descending());
 
         Page<Book> result = bookRepository.findAll(pageable);
         result.getContent().forEach(book -> System.out.println(book));

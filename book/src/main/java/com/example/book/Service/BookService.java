@@ -1,7 +1,7 @@
 package com.example.book.Service;
 
 import java.util.List;
-import java.util.stream.Collector;
+
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -58,13 +58,6 @@ public class BookService {
                 .dtoList(books)
                 .totalCount(totalCount)
                 .pageRequestDTO(pageRequestDTO).build();
-
-        // entity => dto
-        // modelMapper.map(book, BookDTO.class)
-        // List<BookDTO> books = list.stream()
-        // .map(book -> modelMapper.map(book, BookDTO.class))
-        // .collect(Collectors.toList());
-        // return books;
     }
 
     // public Long modify(BookDTO dto) {
