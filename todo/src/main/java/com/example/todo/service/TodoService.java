@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.todo.dto.ToDoDTO;
@@ -42,22 +43,40 @@ public class TodoService {
         ToDo todo = todoRepository.findById(dto.getId()).get();
         todo.setCompleted(dto.isCompleted());
         return todoRepository.save(todo).getId();
-
     }
 
-    public List<ToDoDTO> list(boolean completed) {
-        List<ToDo> list = todoRepository.findByCompleted(completed);
-        // TODo entity => ToDoDTO 변경 후 리턴
+    // public List<ToDoDTO> list(boolean completed) {
+    // // List<ToDo> list = todoRepository.findByCompleted(completed);
+    // // // TODo entity => ToDoDTO 변경 후 리턴
 
-        // List<ToDoDTO> todos = new ArrayList<>();
-        // list.forEach(todo -> {
-        // ToDoDTO dto = modelMapper.map(todo, ToDoDTO.class);
-        // todos.add(dto);
-        // });
+    // List<ToDoDTO> todos = new ArrayList<>();
+    // list.forEach(todo -> {
+    // ToDoDTO dto = modelMapper.map(todo, ToDoDTO.class);
+    // todos.add(dto);
+    // });
 
+    // // List<ToDoDTO> todos = list.stream()
+    // // .map(todo -> modelMapper.map(todo, ToDoDTO.class))
+    // // .collect(Collectors.toList());
+    // // return todos;
+    // // }
+
+    // react 화면단
+    public List<ToDoDTO> list2() {
+        List<ToDo> list = todoRepository.findAll(Sort.by("id").descending());
         List<ToDoDTO> todos = list.stream()
                 .map(todo -> modelMapper.map(todo, ToDoDTO.class))
                 .collect(Collectors.toList());
         return todos;
     }
+
+    public ToDoDTO create2(ToDoDTO dto) {
+
+        ToDo todo = modelMapper.map(dto, ToDo.class);
+
+        ToDo newTodo = todoRepository.save(todo);
+
+        return modelMapper.map(newTodo, ToDoDTO.class);
+    }
+
 }

@@ -51,14 +51,15 @@ public class TodoController {
         return "redirect:/todo/list";
     }
 
-    @GetMapping("/list")
-    public void getList(@RequestParam(defaultValue = "0") boolean completed, Model model) {
-        log.info("전체 todo 가져오기 {}", completed);
-        List<ToDoDTO> todos = todoService.list(completed);
-        model.addAttribute("todos", todos);
-        // 어떤(완료,미완료) 목록을 보여주는가?
-        model.addAttribute("completed", completed);
-    }
+    // @GetMapping("/list")
+    // public void getList(@RequestParam(defaultValue = "0") boolean completed,
+    // Model model) {
+    // log.info("전체 todo 가져오기 {}", completed);
+    // List<ToDoDTO> todos = todoService.list(completed);
+    // model.addAttribute("todos", todos);
+    // // 어떤(완료,미완료) 목록을 보여주는가?
+    // model.addAttribute("completed", completed);
+    // }
 
     @GetMapping("/read")
     public void getRead(Long id, Model model) {

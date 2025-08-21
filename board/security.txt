@@ -1,0 +1,19 @@
+- thymeleaf securify 표현하기
+ - value - ${#authentication.orincipal.name}
+
+sec:authentication="name" : id 가져오기
+sec:authentication="principal.authorities" : 권한 가져오기
+
+sec:authorize="isAuthenticated()"
+sec:authorize="hasRole('ROLE_ADMIN')"
+sec:authorize="hasAnyRole({'ROLE_USER','ROLE_ADMIN','ROLE_MANAGER'})"
+        hasAnyRole() : Role 여러 개 중에 하나만 만족한다면
+        hasRole() : Role 하나만 작성하고 그 Role 만족한다면
+
+- 작성한 경로를 제외하고는 모두 로그인 필요함(컨트롤러 갈수 없음)
+http
+.authorizeHttpRequests(authorize -> authorize.requestMatchers("/css/**", ".js/**", "ima/**", "assets/**").permitAll()
+.anyRequest().authenticated())
+
+- .anyRequest().permitAll() : 컨트롤러 메소드 단에서 제어
+ @PreAuthorize("isAuthenticated()")
